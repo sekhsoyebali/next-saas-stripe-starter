@@ -28,54 +28,6 @@ const defaultComputedFields: ComputedFields = {
   },
 };
 
-export const Doc = defineDocumentType(() => ({
-  name: "Doc",
-  filePathPattern: `docs/**/*.mdx`,
-  contentType: "mdx",
-  fields: {
-    title: {
-      type: "string",
-      required: true,
-    },
-    description: {
-      type: "string",
-    },
-    published: {
-      type: "boolean",
-      default: true,
-    },
-  },
-  computedFields: defaultComputedFields,
-}));
-
-export const Guide = defineDocumentType(() => ({
-  name: "Guide",
-  filePathPattern: `guides/**/*.mdx`,
-  contentType: "mdx",
-  fields: {
-    title: {
-      type: "string",
-      required: true,
-    },
-    description: {
-      type: "string",
-    },
-    date: {
-      type: "date",
-      required: true,
-    },
-    published: {
-      type: "boolean",
-      default: true,
-    },
-    featured: {
-      type: "boolean",
-      default: false,
-    },
-  },
-  computedFields: defaultComputedFields,
-}));
-
 export const Post = defineDocumentType(() => ({
   name: "Post",
   filePathPattern: `blog/**/*.mdx`,
@@ -142,7 +94,7 @@ export const Page = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: "./content",
-  documentTypes: [Page, Doc, Guide, Post],
+  documentTypes: [Page, Post],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
